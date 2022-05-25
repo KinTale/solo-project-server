@@ -8,8 +8,22 @@ datasource db {
     shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
+enum Role {
+    ADMIN
+}
+
 model Admin {
-    id       Int    @id @default(autoincrement())
-    email    String @unique
+    id       Int      @id @default(autoincrement())
+    email    String   @unique
     password String
+    role     Role     @default(ADMIN)
+    Member   Member[]
+}
+
+model Member {
+    id      Int    @id @default(autoincrement())
+    adminId Int
+    admin   Admin  @relation(fields: [adminId], references: [id])
+    name    String
+    title   String
 }
