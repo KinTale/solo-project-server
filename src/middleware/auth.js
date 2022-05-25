@@ -1,6 +1,6 @@
-import { JWT_SECRET } from "../utils/config";
+import { JWT_SECRET } from "../utils/config.js";
 import jwt from 'jsonwebtoken'
-import dbClient from "../utils/dbClient";
+import dbClient from "../utils/dbClient.js";
 
 export async function validateAuth(req, res, next) {
     const header = req.header('authorization')
@@ -20,7 +20,7 @@ export async function validateAuth(req, res, next) {
     }
 
     const decodedToken = jwt.decode(token)
-    const foundAdmin = await dbClient.admin.findUnique({
+    const foundAdmin = await dbClient.admin.findFirst({
         where: {
             id: decodedToken.id
         }
