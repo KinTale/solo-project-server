@@ -24,7 +24,9 @@ export async function validateAuth(req, res, next) {
         where: {
             id: decodedToken.id
         }
+
     })
+    req.adminId = foundAdmin.id
     delete foundAdmin.password
     next()
 
