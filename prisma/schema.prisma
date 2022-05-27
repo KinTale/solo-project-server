@@ -13,11 +13,12 @@ enum Role {
 }
 
 model Admin {
-    id       Int      @id @default(autoincrement())
-    email    String   @unique
-    password String
-    role     Role     @default(ADMIN)
-    Member   Member[]
+    id        Int         @id @default(autoincrement())
+    email     String      @unique
+    password  String
+    role      Role        @default(ADMIN)
+    Member    Member[]
+    Inventory Inventory[]
 }
 
 model Member {
@@ -26,4 +27,15 @@ model Member {
     admin   Admin  @relation(fields: [adminId], references: [id])
     name    String
     title   String
+}
+
+model Inventory {
+    id          Int    @id @default(autoincrement())
+    adminId     Int
+    admin       Admin  @relation(fields: [adminId], references: [id])
+    description String
+    quantity    Int
+    sponsored   String
+    price       Int
+    location    String
 }
