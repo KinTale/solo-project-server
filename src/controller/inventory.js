@@ -37,3 +37,22 @@ export const addItem = async (req, res) => {
         return console.log(e)
     }
 }
+
+export const deleteItem = async (req, res) => {
+    console.log(req.params.itemId)
+    const itemId = parseInt(req.params.itemId)
+     
+    try{
+        const deletedItem = await dbClient.inventory.delete({
+            where:{
+                id: itemId
+            }
+        })
+        return res.status(201).json(deletedItem)
+    }catch (e) {
+        return res.status(500).json('unable to delete item')
+    }
+
+
+
+}
