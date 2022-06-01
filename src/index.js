@@ -12,6 +12,7 @@ app.use(express.urlencoded({ extended: true}))
 app.use('/' , authRouter)
 app.use('/members', memberRouter)
 app.use('/inventory', inventoryRouter)
+
 const port = process.env.PORT || 4000
 
 app.listen(port, () => {
