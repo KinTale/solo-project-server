@@ -3,7 +3,8 @@ import dbClient from '../utils/dbClient.js'
 export const inventoryList = async (req, res) => {
     try {
         const list = await dbClient.inventory.findMany()
-        return res.status(200).json({ data: list })
+        const sortedList = list.sort((a, b) => a.id - b.id)
+        return res.status(200).json({ data: sortedList })
     } catch (e) {
         return res.status(500).json('unable to get members')
     }
