@@ -31,7 +31,6 @@ export const addItem = async (req, res) => {
         })
         return res.status(201).json(createdItem)
     } catch (e) {
-        // res.status(500).json('unable to create item')
         return console.log(e)
     }
 }

@@ -19,6 +19,7 @@ model Admin {
     role      Role        @default(ADMIN)
     Member    Member[]
     Inventory Inventory[]
+    Event     Event[]
 }
 
 model Member {
@@ -37,5 +38,15 @@ model Inventory {
     quantity    Int
     sponsored   String
     price       Int
+    location    String
+}
+
+model Event {
+    id          Int      @id @default(autoincrement())
+    adminId     Int
+    admin       Admin    @relation(fields: [adminId], references: [id])
+    description String
+    date        DateTime
+    time        DateTime
     location    String
 }
