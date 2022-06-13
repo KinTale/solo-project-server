@@ -37,7 +37,7 @@ model Inventory {
     description String
     quantity    Int
     sponsored   String
-    price       Int
+    price       String?
     location    String
 }
 
@@ -46,7 +46,7 @@ model Event {
     adminId     Int
     admin       Admin    @relation(fields: [adminId], references: [id])
     description String
-    date        DateTime
+    date        DateTime 
     time        DateTime
     location    String
 }

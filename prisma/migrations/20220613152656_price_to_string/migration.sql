@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Inventory" ALTER COLUMN "price" DROP NOT NULL,
+ALTER COLUMN "price" SET DATA TYPE TEXT;

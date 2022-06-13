@@ -1,4 +1,5 @@
 import dbClient from '../utils/dbClient.js'
+import Decimal from 'decimal.js'
 
 export const inventoryList = async (req, res) => {
     try {
@@ -6,7 +7,8 @@ export const inventoryList = async (req, res) => {
         const sortedList = list.sort((a, b) => a.id - b.id)
         return res.status(200).json({ data: sortedList })
     } catch (e) {
-        return res.status(500).json('unable to get members')
+        console.log(e)
+        return res.status(500).json('unable to get items')
     }
 }
 
@@ -20,7 +22,7 @@ export const addItem = async (req, res) => {
                 description: description,
                 quantity: parseInt(quantity),
                 sponsored: sponsored,
-                price: parseInt(price),
+                price: price,
                 location: location,
                 admin: {
                     connect: {
@@ -47,7 +49,7 @@ export const editItem = async (req, res) => {
                 description: description,
                 quantity: parseInt(quantity),
                 sponsored: sponsored,
-                price: parseInt(price),
+                price: price,
                 location: location,
                 admin: {
                     connect: {
@@ -56,8 +58,8 @@ export const editItem = async (req, res) => {
                 }
             }
         })
-        console.log(updateItem)
-        return res.status(201).json(updateItem)
+       
+        return res.status(201).json(updateItem.price)
     } catch (e) {
         return console.log(e)
     }
