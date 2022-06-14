@@ -28,6 +28,7 @@ export const allMembers = async (req, res) => {
         const memberList = await dbClient.member.findMany()
         return res.status(200).json({ data: memberList })
     } catch (e) {
+        console.log('ERROR', e)
         return res.status(500).json('unable to get members')
     }
 }
